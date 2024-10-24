@@ -3,7 +3,10 @@ import { StyleSheet, Text, Image, TouchableOpacity, View, StatusBar, Button } fr
 import { WebView } from 'react-native-webview';
 
 function App(): React.JSX.Element {
+  // const [url, setUrl] = useState('https://www.nanshanmuseum.com/exh-guide/qtqh/list.html');
+  const [url, setUrl] = useState('file:///android_asset/index.html');
   const webviewRef = useRef(null);
+
   const handleGoBack = () => {
     webviewRef.current?.goBack();
   };
@@ -15,18 +18,23 @@ function App(): React.JSX.Element {
   const handleRefresh = () => {
     webviewRef.current?.reload();
   };
+
+  const handleNavigate = () => {
+    setUrl('file:///android_asset/loading.html');
+    setTimeout(() => {
+      setUrl('file:///android_asset/index.html');
+    }, 100);
+  };
+
+
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar
-        backgroundColor='#ff0000'
-        translucent={true}
-        hidden={true}
-        animated={true} />
       <WebView
         ref={webviewRef}
-        source={{ uri: 'https://www.nanshanmuseum.com/exh-guide/qtqh/list.html' }}
+        source={{ uri: url }}
         javaScriptEnabled={true}
         domStorageEnabled={true}
+        originWhitelist={["*"]}
         style={{ flex: 1 }}
       />
       <View style={styles.ctrlGroup}>
@@ -61,7 +69,7 @@ function App(): React.JSX.Element {
           <TouchableOpacity
             style={styles.imgButtonContainer}
             activeOpacity={0.7}
-            onPress={handleGoBack}
+            onPress={handleNavigate}
           >
             <Image source={require('./src/icons/btn_menu.png')} style={styles.imgButtonContainerImg} />
           </TouchableOpacity>
