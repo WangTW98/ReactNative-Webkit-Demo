@@ -2847,6 +2847,9 @@ __metadata:
     prettier: 2.8.8
     react: 18.3.1
     react-native: 0.75.4
+    react-native-screen: ^1.0.1
+    react-native-webview: ^13.12.3
+    react-navigation: ^5.0.0
     react-test-renderer: 18.3.1
     typescript: 5.0.4
   languageName: unknown
@@ -4056,9 +4059,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.41":
-  version: 1.5.43
-  resolution: "electron-to-chromium@npm:1.5.43"
-  checksum: 5f8ed71e6461047efc7bf8728f1cd4cb82b9375f7db3eb29bf1014680797fec7591b2be5b483092e0cbd6d9b1cb90cd7c3375e13bce8136a0e0cb0a3f4690f2d
+  version: 1.5.45
+  resolution: "electron-to-chromium@npm:1.5.45"
+  checksum: f2e1ad7867125501d41f763e129d130bd563efebab65f5ca88a81407e834ff81d4e1e19355714d1e7f82a4662d3531fc23a0e9e9cdfb7b9ead0eb52ddcfa4b3e
   languageName: node
   linkType: hard
 
@@ -5327,7 +5330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"invariant@npm:^2.2.4":
+"invariant@npm:2.2.4, invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
   dependencies:
@@ -7762,6 +7765,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-screen@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "react-native-screen@npm:1.0.1"
+  checksum: 144adadc9e02f3ed6a573e7b57b6d24f9d89b20ad95c1c686cae1b539ed1ad96b96dc7fc7cb06b373d7f3a9a50bb6bfc1133a9c2096ce5786c596572249a93fc
+  languageName: node
+  linkType: hard
+
+"react-native-webview@npm:^13.12.3":
+  version: 13.12.3
+  resolution: "react-native-webview@npm:13.12.3"
+  dependencies:
+    escape-string-regexp: ^4.0.0
+    invariant: 2.2.4
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 94d824fedc6b5c0402926b99a96f71f4752416e4f038be827552015c0bf6d595d71ba656079618402662aec5e2c539018b0bff2906b6f95261f70893e5dd5d80
+  languageName: node
+  linkType: hard
+
 "react-native@npm:0.75.4":
   version: 0.75.4
   resolution: "react-native@npm:0.75.4"
@@ -7814,6 +7837,13 @@ __metadata:
   bin:
     react-native: cli.js
   checksum: 7dcbffffd529b47d34c7457cdf71ec0c9257fa5e467d8395e61675eab4a2494727464a1cd6d2d1b1fd1348cf71c409ee4a28a79a43ea38b1eb99fcf16e910b1c
+  languageName: node
+  linkType: hard
+
+"react-navigation@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "react-navigation@npm:5.0.0"
+  checksum: 90a44a82e6b6cf39cde4a14b7ba3e6bef241af247b155c61a3cc00db694260e47a29bc617acad03cb98a7a70f215ee58a92902f988a4e52e444ff18fef545ea7
   languageName: node
   linkType: hard
 

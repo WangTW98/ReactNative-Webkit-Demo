@@ -1,118 +1,109 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, Text, Image, TouchableOpacity, View, StatusBar, Button } from 'react-native';
+import { WebView } from 'react-native-webview';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+function App(): React.JSX.Element {
+  const webviewRef = useRef(null);
+  const handleGoBack = () => {
+    webviewRef.current?.goBack();
+  };
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  const handleGoForward = () => {
+    webviewRef.current?.goForward();
+  };
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const handleRefresh = () => {
+    webviewRef.current?.reload();
+  };
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={{ flex: 1 }}>
+      <StatusBar
+        backgroundColor='#ff0000'
+        translucent={true}
+        hidden={true}
+        animated={true} />
+      <WebView
+        ref={webviewRef}
+        source={{ uri: 'https://www.nanshanmuseum.com/exh-guide/qtqh/list.html' }}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        style={{ flex: 1 }}
+      />
+      <View style={styles.ctrlGroup}>
+        <View style={styles.ctrlSubGroup}>
+          {/* // 后退按钮 */}
+          <TouchableOpacity
+            style={styles.imgButtonContainer}
+            activeOpacity={0.7}
+            onPress={handleGoBack}
+          >
+            <Image source={require('./src/icons/btn_back.png')} style={styles.imgButtonContainerImg} />
+          </TouchableOpacity>
+          {/* // 刷新按钮 */}
+          <TouchableOpacity
+            style={styles.imgButtonContainer}
+            activeOpacity={0.7}
+            onPress={handleRefresh}
+          >
+            <Image source={require('./src/icons/btn_refresh.png')} style={styles.imgButtonContainerImg2} />
+          </TouchableOpacity>
+          {/* // 前进按钮 */}
+          <TouchableOpacity
+            style={styles.imgButtonContainer}
+            activeOpacity={0.7}
+            onPress={handleGoForward}
+          >
+            <Image source={require('./src/icons/btn_forward.png')} style={styles.imgButtonContainerImg} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.ctrlSubGroup}>
+          {/* // 目录按钮 */}
+          <TouchableOpacity
+            style={styles.imgButtonContainer}
+            activeOpacity={0.7}
+            onPress={handleGoBack}
+          >
+            <Image source={require('./src/icons/btn_menu.png')} style={styles.imgButtonContainerImg} />
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  ctrlGroup: {
+    position: 'absolute',
+    bottom: 10,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1000,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  ctrlSubGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#708090',
+    borderRadius: 20,
+    margin: 4,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  imgButtonContainer: {
+
   },
-  highlight: {
-    fontWeight: '700',
+  imgButtonContainerImg: {
+    width: 30,
+    height: 30,
+    marginVertical: 0,
+    marginHorizontal: 8
   },
+  imgButtonContainerImg2: {
+    width: 20,
+    height: 20,
+    marginVertical: 0,
+    marginHorizontal: 8
+  }
 });
 
 export default App;
